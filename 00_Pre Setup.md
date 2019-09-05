@@ -1,11 +1,12 @@
 Credit: Atip Peethong
 
 TLDR: 
-(must already have CentOS)
+(must already have CentOS) -https://www.centos.org/download/
 - Add master host ip
 - disable firewall
 - disable selinux
 - update CentOS
+
 
 <br>
 Please check MAC address for public and internal cards
