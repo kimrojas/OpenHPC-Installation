@@ -16,7 +16,8 @@ Please check MAC address for public and internal cards
 **Master**\
 Hostname: master\
 enp0s3: private(internal) network 192.168.1.254\
-enp0s8: public network 192.168.11.6
+enp0s8: public network 192.168.11.6\
+note: network need to be adapted to system in question
 
 **Compute1**\
 Hostname: c1\
