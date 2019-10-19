@@ -18,7 +18,7 @@
 
 ## ADD MASTER HOST ##
 echo '192.168.5.1 master' >> /etc/hosts
-hostnamectl set-hostnname master
+hostnamectl set-hostname master
 
 ## DISABLE FIREWALL ##
 systemctl disable firewalld
