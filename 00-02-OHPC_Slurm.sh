@@ -80,10 +80,13 @@ chroot $CHROOT systemctl enable ntpd
 echo "server 192.168.5.1" >> $CHROOT/etc/ntp.conf
 
 ## UPDATE SLURM CONFIGURATION ## (update for multiple types of computers)
-# perl -pi -e "s/^NodeName=(\S+)/NodeName=c[1-2]/" /etc/slurm/slurm.conf
-# perl -pi -e "s/^PartitionName=normal Nodes=(\S+)/PartitionName=normal Nodes=c[1-2]/" /etc/slurm/slurm.conf
-# perl -pi -e "s/^Sockets=(\S+)/Sockets=1/" /etc/slurm/slurm.conf
-# perl -pi -e "s/^CoresPerSocket=(\S+)/CoresPerSocket=4/" /etc/slurm/slurm.conf
-# perl -pi -e "s/^ThreadsPerCore=(\S+)/ThreadsPerCore=1/" /etc/slurm/slurm.conf
+sed -i "s/ClusterName=\S+/ClusterName=${CLUSTER_NAME}/"  /etc/slurm/slurm.conf
+sed -i "s/ControlMachine=\S+/ControlMachine=${MASTER_HOSTNAME}/" /etc/slurm/slurm.conf
+
+perl -pi -e "s/^NodeName=\S+/NodeName=c[1-2]/" /etc/slurm/slurm.conf
+perl -pi -e "s/^PartitionName=normal Nodes=\S+/PartitionName=normal Nodes=c[1-2]/" /etc/slurm/slurm.conf
+perl -pi -e "s/^Sockets=\S+/Sockets=1/" /etc/slurm/slurm.conf
+perl -pi -e "s/^CoresPerSocket=\S+/CoresPerSocket=4/" /etc/slurm/slurm.conf
+perl -pi -e "s/^ThreadsPerCore=\S+/ThreadsPerCore=1/" /etc/slurm/slurm.conf
 
 
