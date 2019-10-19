@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Automation script for cluster 
 
 # Master
