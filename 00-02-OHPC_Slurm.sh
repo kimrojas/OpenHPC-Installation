@@ -33,7 +33,7 @@ systemctl enable dhcpd.service
 
 ## DEFINE IMAGE FOR COMPUTE NODE ##
 export CHROOT=/opt/ohpc/admin/images/centos7
-wwmkchroot centos-7 $CHROOT
+wwmkchroot centos-7 $CHROOT | tee def_img.o
 
 ## INSTALL OpenHPC FOR COMPUTE NODE ##
 yum -y --installroot=$CHROOT install ohpc-base-compute | tee OHPC_node_install.o
@@ -80,7 +80,8 @@ chroot $CHROOT systemctl enable ntpd
 echo "server 192.168.5.1" >> $CHROOT/etc/ntp.conf
 
 ## UPDATE SLURM CONFIGURATION ## (update for multiple types of computers)
-sed -i "s/ClusterName=\S+/ClusterName=${CLUSTER_NAME}/"  /etc/slurm/slurm.conf
+sed -i "s/ClusterName=\S+/ClusterName=${CLUSTER_NAME}/"  /etc/slurm/slurm.conf !!!!!!!!
+sed -i "s/ClusterName=\S+/ClusterName=myCLUSTER/"  /etc/slurm/slurm.conf
 sed -i "s/ControlMachine=\S+/ControlMachine=${MASTER_HOSTNAME}/" /etc/slurm/slurm.conf
 
 perl -pi -e "s/^NodeName=\S+/NodeName=c[1-2]/" /etc/slurm/slurm.conf
