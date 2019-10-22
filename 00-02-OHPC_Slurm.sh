@@ -80,9 +80,18 @@ chroot $CHROOT systemctl enable ntpd
 echo "server 192.168.5.1" >> $CHROOT/etc/ntp.conf
 
 ## UPDATE SLURM CONFIGURATION ## (update for multiple types of computers)
+perl -pi -e "s/ClusterName=\S+/ClusterName=HPCL/"  /etc/slurm/slurm.conf
+perl -pi -e "s/ControlMachine=\S+/ControlMachine=master/" /etc/slurm/slurm.conf
+
+perl -pi -e "s/^NodeName=\S+/NodeName=c[1-2]/" /etc/slurm/slurm.conf
+perl -pi -e "s/^PartitionName=normal Nodes=\S+/PartitionName=normal Nodes=c[1-2]/" /etc/slurm/slurm.conf
+
+# N/a
+perl -pi -e "s/^Sockets=\S+/Sockets=1/" /etc/slurm/slurm.conf 
+
 sed -i "s/ClusterName=\S+/ClusterName=${CLUSTER_NAME}/"  /etc/slurm/slurm.conf !!!!!!!!
-sed -i "s/ClusterName=\S+/ClusterName=myCLUSTER/"  /etc/slurm/slurm.conf
-sed -i "s/ControlMachine=\S+/ControlMachine=${MASTER_HOSTNAME}/" /etc/slurm/slurm.conf
+sed -i "s/ClusterName=\S+/ClusterName=myCLUSTER/"  /etc/slurm/slurm.conf!!
+sed -i "s/ControlMachine=\S+/ControlMachine=${MASTER_HOSTNAME}/" /etc/slurm/slurm.conf!!!
 
 perl -pi -e "s/^NodeName=\S+/NodeName=c[1-2]/" /etc/slurm/slurm.conf
 perl -pi -e "s/^PartitionName=normal Nodes=\S+/PartitionName=normal Nodes=c[1-2]/" /etc/slurm/slurm.conf
