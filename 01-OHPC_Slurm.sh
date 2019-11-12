@@ -173,7 +173,7 @@ wwsh file list
 
 ## REGISTER NODES
 wwsh -y node new c1 --ipaddr=192.168.5.51 --hwaddr=70:4d:7b:a0:f8:56 -D eno1
-wwsh -y node new c2 --ipaddr=192.168.5.52 --hwaddr=70:4d:7b:a0:fa:48 -D eno1np4s0
+wwsh -y node new c2 --ipaddr=192.168.5.52 --hwaddr=70:4d:7b:a0:fa:48 -D eno1
 wwsh node list
 
 ## DEFINE VNFS FOR NODES
